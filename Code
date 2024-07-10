@@ -1,0 +1,44 @@
+
+def main():
+    plate = input("Plate: ")
+    if is_valid(plate):
+        print("Valid")
+    else:
+        print("Invalid")
+
+def is_valid(s):
+    if not s[0:2].isalpha: #checks if first 2 characters are alphabetical
+        return False
+    
+    if not 1 < len(s) < 7: #checks whether string is not more than 6 and less than 2
+        return False
+    
+    if num_inbetween_plate(s): #checks whether there is a number in between the plates
+        return False
+    
+    if space_punc_periods(s):
+        return False
+
+def num_inbetween_plate(s):
+     #loop to find digit
+    for n in range(0, len(s)):
+        #check if digit and not 0
+        if s[n].isdigit() and s[n] != '0': 
+            print(n)
+            #loop for alphabetical
+            for a in range(n, len(s)):
+                #check if alphabetical
+                if s[a].isalpha():
+                    return a, True
+        elif s[n] == "0":
+            return True
+   
+def space_punc_periods(s):
+    for i in range(0, len(s)):
+        if not s[i].isupper() or s[i].isalpha():
+            return True
+            
+
+         
+
+main()
